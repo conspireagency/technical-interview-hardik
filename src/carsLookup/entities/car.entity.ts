@@ -35,37 +35,36 @@ export class getPartNumberResponseBody {
 }
 
 export class CreateCarMakesDto{
-    year:string;
+    Year:string;
 }
 
 export class CreateCarModelsDto{
-    year:string;
-    makes:string;
+    Year:string;
+    Make:string;
 }
 
 export class CreateCarSubModelsDto{
-    year:string;
-    makes:string;
-    model:string;
+    Year:string;
+    Make:string;
+    Model:string;
 
 }
 
 export class CreateCarNotesDto{
-    year:string
-    
-    makes:string;
-    model:string;
-    submodel:string;
+    Year:string
+    Make:string;
+    Model:string;
+    Submodel:string;
 
 
 }
 
 export class CreateCarPartNumberAndSizeDto{
-   year:string;
-    makes:string;
-    model:string;
-    submodel:string;
-    notes:string
+   Year:string;
+    Make:string;
+    Model:string;
+    Submodel:string;
+    Notes:string
 }
 
 

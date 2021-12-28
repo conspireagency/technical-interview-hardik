@@ -33,70 +33,70 @@ export class CarsService {
 
   async getModels(request) {
 
-      const {Year,Makes} = request
+      const {Year,Make} = request
 
     const carmodels = await prisma.car.findMany({
-      where:{year:Year,make:Makes},select:{
+      where:{year:Year,make:Make},select:{
         model:true, 
       }
     })
 
     if(!carmodels){
-       return {status:true,message:`Car Models for ${Year} and ${Makes} Not Available`, data:{}};
+       return {status:true,message:`Car Models for ${Year} and ${Make} Not Available`, data:{}};
   }
     
-    return {status:true,message:`Car Models for ${Year} and ${Makes} Retrived Successfully`, data:carmodels};
+    return {status:true,message:`Car Models for ${Year} and ${Make} Retrived Successfully`, data:carmodels};
   }
 
 
 
 async getSubmodels(request){
-    const {Year,Makes,Models} = request
+    const {Year,Make,Model} = request
 
     const carsubmodels = await prisma.car.findMany({
-      where:{year:Year,make:Makes,model:Models},select:{
+      where:{year:Year,make:Make,model:Model},select:{
      submodel:true
       }
     })
 
     if(!carsubmodels){
-      return {status:true,message:`Car SubModels for ${Year} , ${Makes} and ${Models} Not Available`, data:{}} ;
+      return {status:true,message:`Car SubModels for ${Year} , ${Make} and ${Model} Not Available`, data:{}} ;
     }
-   return {status:true,message:`Car SubModels for ${Year} , ${Makes} and ${Models} Retrived Successfully`, data:carsubmodels} ;
+   return {status:true,message:`Car SubModels for ${Year} , ${Make} and ${Model} Retrived Successfully`, data:carsubmodels} ;
   }
 
 
 
   async getNotes(request) {
-        const {Year,Makes,Models,SubModels} = request
+        const {Year,Make,Model,SubModel} = request
 
     const carnotes = await prisma.car.findMany({
-      where:{year:Year,make:Makes,model:Models,submodel:SubModels},select:{
+      where:{year:Year,make:Make,model:Model,submodel:SubModel},select:{
         notes:true
       }
     })
 
     if(!carnotes){
-       return {status:true,message:`Car Notes for ${Year} , ${Makes} , ${Models}and ${SubModels} Not Available`, data:{}}
+       return {status:true,message:`Car Notes for ${Year} , ${Make} , ${Model}and ${SubModel} Not Available`, data:{}}
   }
     
-  return {status:true,message:`Car Notes for ${Year} , ${Makes} , ${Models}, ${SubModels} Retrived Successfully`, data:carnotes}
+  return {status:true,message:`Car Notes for ${Year} , ${Make} , ${Model}, ${SubModel} Retrived Successfully`, data:carnotes}
   }
 
 
    async getPartNumber(request) {
-         const {Year,Makes,Models,Notes,SubModels} = request
+         const {Year,Make,Model,Notes,SubModels} = request
 
     const carpartnumberandsize = await prisma.car.findMany({
-      where:{year:Year,make:Makes,model:Models,submodel:SubModels},select:{
+      where:{year:Year,make:Make,model:Model,submodel:SubModels},select:{
        pL:true,
        sizecode:true
       }
     })
   if(!carpartnumberandsize){
-    return {status:true,message:`Car Part Number + Size Code for${Year} , ${Makes} , ${Models}, ${SubModels} and ${Notes} Not Available`, data:{}}
+    return {status:true,message:`Car Part Number + Size Code for${Year} , ${Make} , ${Model}, ${SubModels} and ${Notes} Not Available`, data:{}}
   }
 
-    return {status:true,message:`Car Part Number + Size Code for ${Year} , ${Makes} , ${Models}, ${SubModels} and ${Notes} Retrived Successfully`, data:carpartnumberandsize}
+    return {status:true,message:`Car Part Number + Size Code for ${Year} , ${Make} , ${Model}, ${SubModels} and ${Notes} Retrived Successfully`, data:carpartnumberandsize}
   }
 }

@@ -34,7 +34,7 @@ export class CarsController {
     return this.carsService.getNotes(request);
   }
 
-    @Post('/partnum')
+    @Post('/partnumandsize')
   findPartnum(@Body() request: CreateCarPartNumberAndSizeDto) {
     return this.carsService.getPartNumber(request);
   }

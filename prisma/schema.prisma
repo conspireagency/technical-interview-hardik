@@ -17,6 +17,7 @@ model Car{
   make String @db.VarChar(225)
   model String @db.VarChar(225)
   submodel String @db.VarChar(225)
-  Notes String @db.VarChar(225)
+  notes String @db.VarChar(225)
   pL    String @db.VarChar(225)
+  sizecode String @db.VarChar(225)
 }

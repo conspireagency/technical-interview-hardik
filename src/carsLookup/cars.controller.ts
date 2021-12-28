@@ -27,12 +27,12 @@ export class CarsController {
     return this.carsService.getSubmodels(year,makes,model);
   }
 
-  @Get('/notes/:year/:makes/:model:/submodel')
+  @Get('/notes/:year/:makes/:model/:submodel')
   findNotes(@Param('year') year: string, @Param('makes') makes:string,@Param('model') model:string,@Param('submodel') submodel:string) {
     return this.carsService.getNotes(year,makes,model,submodel);
   }
 
-    @Get('/partnum/sizecode/:year/:makes/:model:/submodel/notes')
+    @Get('/partnum/sizecode/:year/:makes/:model/:submodel/:notes')
   findPartnum(@Param('year') year: string, @Param('makes') makes:string,@Param('model') model:string,@Param('submodel') submodel:string,@Param('notes') notes:string) {
     return this.carsService.getPartNumber(year,makes,model,submodel,notes);
   }

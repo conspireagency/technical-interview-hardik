@@ -1,26 +1,32 @@
 import { Injectable } from '@nestjs/common';
-import { CreateAddcarDto } from './dto/create-addcar.dto';
-import { UpdateAddcarDto } from './dto/update-addcar.dto';
+import { AddCarResponseBoby} from './entities/addcar.entity';
+import prisma from "../../prisma"
+
+
 
 @Injectable()
 export class AddcarService {
-  create(createAddcarDto: CreateAddcarDto) {
-    return 'This action adds a new addcar';
+  async createCar(request):Promise<AddCarResponseBoby> {
+
+  
+
+    const {Year,Make,Model,Submodel,Notes,PartNumber,SizeCode}= request
+
+  const dbsave = await prisma.car.create({
+    data:{
+      year:Year,
+      make:Make,
+      model:Model,
+      submodel:Submodel,
+      notes:Notes,
+      pL:PartNumber,
+      sizecode:SizeCode
+    }
+  })
+
+  
+    return {status:true,message:"Car Details Added successfully",data:dbsave};
   }
 
-  findAll() {
-    return `This action returns all addcar`;
-  }
 
-  findOne(id: number) {
-    return `This action returns a #${id} addcar`;
-  }
-
-  update(id: number, updateAddcarDto: UpdateAddcarDto) {
-    return `This action updates a #${id} addcar`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} addcar`;
-  }
 }

@@ -23,7 +23,7 @@ export class getSubModelsResponseBody {
 }
 
 export class getNotesResponseBody {
-      tatus:boolean;
+      status:boolean;
     message:string;
     data:{}
 }

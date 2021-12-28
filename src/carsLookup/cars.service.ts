@@ -25,6 +25,7 @@ export class CarsService {
         make:true
       }
     })
+
     return {status:true,message:`Car Makes for ${Year} Retrived Successfully`, data:carmakes};
   }
 
@@ -36,11 +37,14 @@ export class CarsService {
 
     const carmodels = await prisma.car.findMany({
       where:{year:Year,make:Makes},select:{
-        model:true,
-
-        
+        model:true, 
       }
     })
+
+    if(!carmodels){
+       return {status:true,message:`Car Models for ${Year} and ${Makes} Not Available`, data:{}};
+  }
+    
     return {status:true,message:`Car Models for ${Year} and ${Makes} Retrived Successfully`, data:carmodels};
   }
 
@@ -54,6 +58,10 @@ async getSubmodels(request){
      submodel:true
       }
     })
+
+    if(!carsubmodels){
+      return {status:true,message:`Car SubModels for ${Year} , ${Makes} and ${Models} Not Available`, data:{}} ;
+    }
    return {status:true,message:`Car SubModels for ${Year} , ${Makes} and ${Models} Retrived Successfully`, data:carsubmodels} ;
   }
 
@@ -67,6 +75,11 @@ async getSubmodels(request){
         notes:true
       }
     })
+
+    if(!carnotes){
+       return {status:true,message:`Car Notes for ${Year} , ${Makes} , ${Models}and ${SubModels} Not Available`, data:{}}
+  }
+    
   return {status:true,message:`Car Notes for ${Year} , ${Makes} , ${Models}, ${SubModels} Retrived Successfully`, data:carnotes}
   }
 
@@ -80,6 +93,10 @@ async getSubmodels(request){
        sizecode:true
       }
     })
-    return {status:true,message:`Car Notes for ${Year} , ${Makes} , ${Models}, ${SubModels} and ${Notes} Retrived Successfully`, data:carpartnumberandsize}
+  if(!carpartnumberandsize){
+    return {status:true,message:`Car Part Number + Size Code for${Year} , ${Makes} , ${Models}, ${SubModels} and ${Notes} Not Available`, data:{}}
+  }
+
+    return {status:true,message:`Car Part Number + Size Code for ${Year} , ${Makes} , ${Models}, ${SubModels} and ${Notes} Retrived Successfully`, data:carpartnumberandsize}
   }
 }

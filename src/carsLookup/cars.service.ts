@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import{getCarYearsResponseBody,getMakesResponseBody,getModelsResponseBody,getNotesResponseBody,getPartNumberResponseBody} from "./entities/car.entity"
+import{getCarYearsResponseBody,getMakesResponseBody,getModelsResponseBody,getNotesResponseBody,getPartNumberResponseBody,getSubModelsResponseBody} from "./entities/car.entity"
 import prisma from "../../prisma"
 
 
@@ -17,7 +17,7 @@ export class CarsService {
 
 
 
-  async getMakes(request) {
+  async getMakes(request):Promise<getMakesResponseBody> {
     const {Year} = request
 
     const carmakes = await prisma.car.findMany({
@@ -31,7 +31,7 @@ export class CarsService {
 
 
 
-  async getModels(request) {
+  async getModels(request):Promise<getModelsResponseBody> {
 
       const {Year,Make} = request
 
@@ -50,7 +50,7 @@ export class CarsService {
 
 
 
-async getSubmodels(request){
+async getSubmodels(request):Promise<getSubModelsResponseBody>{
     const {Year,Make,Model} = request
 
     const carsubmodels = await prisma.car.findMany({
@@ -67,7 +67,7 @@ async getSubmodels(request){
 
 
 
-  async getNotes(request) {
+  async getNotes(request) :Promise<getNotesResponseBody>{
         const {Year,Make,Model,SubModel} = request
 
     const carnotes = await prisma.car.findMany({
@@ -84,7 +84,7 @@ async getSubmodels(request){
   }
 
 
-   async getPartNumber(request) {
+   async getPartNumber(request):Promise<getPartNumberResponseBody> {
          const {Year,Make,Model,Notes,SubModel} = request
 
     const carpartnumberandsize = await prisma.car.findMany({

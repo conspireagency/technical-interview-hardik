@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import{getCarYearsResponseBody,getMakesResponseBody,getModelsResponseBody,getNotesResponseBody,getPartNumberResponseBody} from "./entities/car.entity.ts"
+import{getCarYearsResponseBody,getMakesResponseBody,getModelsResponseBody,getNotesResponseBody,getPartNumberResponseBody} from "./entities/car.entity"
 
 @Injectable()
 export class CarsService {
@@ -12,17 +12,17 @@ export class CarsService {
   }
 
   getModels(year:string,makes:string) {
-    return `This action returns a #${id} car`;
+    return ;
   }
 
   getSubmodels(year:string,makes:string,model:string) {
-    return `This action updates a #${id} car`;
+    return ;
   }
 
   getNotes(year:string,makes:string,model:string,submodel:string) {
-    return `This action removes a #${id} car`;
+    return ;
   }
    getPartNumber(year:string,makes:string,model:string,submodel:string,notes:string) {
-    return `This action removes a #${id} car`;
+    return;
   }
 }

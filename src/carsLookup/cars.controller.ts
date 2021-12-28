@@ -13,27 +13,27 @@ export class CarsController {
   }
 
   @Get('/makes/:year')
-  find(@Param('year') year: string) {
+  findMakes(@Param('year') year: string) {
     return this.carsService.getMakes(year);
   }
 
   @Get('models/:year/:makes')
-  find(@Param('year') year: string, @Param('makes') make:string) {
+  findModel(@Param('year') year: string, @Param('makes') makes:string) {
     return this.carsService.getModels(year,makes);
   }
 
   @Get('/submodels/:year/:makes/:model')
-  find(@Param('year') year: string, @Param('makes') makes:string,@Param('model') model:string) {
+  findSubmodel(@Param('year') year: string, @Param('makes') makes:string,@Param('model') model:string) {
     return this.carsService.getSubmodels(year,makes,model);
   }
 
   @Get('/notes/:year/:makes/:model:/submodel')
-  find(@Param('year') year: string, @Param('makes') makes:string,@Param('model') model:string,@Param('submodel') submodel:string) {
+  findNotes(@Param('year') year: string, @Param('makes') makes:string,@Param('model') model:string,@Param('submodel') submodel:string) {
     return this.carsService.getNotes(year,makes,model,submodel);
   }
 
     @Get('/partnum/sizecode/:year/:makes/:model:/submodel/notes')
-  find(@Param('year') year: string, @Param('makes') makes:string,@Param('model') model:string,@Param('submodel') submodel:string,@Param('notes') notes:string) {
+  findPartnum(@Param('year') year: string, @Param('makes') makes:string,@Param('model') model:string,@Param('submodel') submodel:string,@Param('notes') notes:string) {
     return this.carsService.getPartNumber(year,makes,model,submodel,notes);
   }
 }

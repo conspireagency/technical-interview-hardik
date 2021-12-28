@@ -1,35 +1,35 @@
 export class getCarYearsResponseBody {
-    status:boolen;
+    status:boolean;
     message:string;
     data:{}
 }
 
 export class getMakesResponseBody {
-    status:boolen;
+    status:boolean;
     message:string;
     data:{}
 }
 
 export class getModelsResponseBody {
-    status:boolen;
+    status:boolean;
     message:string;
     data:{}
 }
 
 export class getSubModelsResponseBody {
-    status:boolen;
+    status:boolean;
     message:string;
     data:{}
 }
 
 export class getNotesResponseBody {
-      tatus:boolen;
+      tatus:boolean;
     message:string;
     data:{}
 }
 
 export class getPartNumberResponseBody {
-    status:boolen;
+    status:boolean;
     message:string;
     data:{}
 }

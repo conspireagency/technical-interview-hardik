@@ -15,27 +15,71 @@ export class CarsService {
     return {status:true,message:"Car Years Retrived Successfully", data:caryears};
   }
 
+
+
   async getMakes(request) {
-    const {year} = request
+    const {Year} = request
 
     const carmakes = await prisma.car.findMany({
-      where:{year:year}
+      where:{year:Year},select:{
+        make:true
+      }
     })
-    return {status:true,message:`Car Makes for ${year} Retrived Successfully`, data:carmakes};
+    return {status:true,message:`Car Makes for ${Year} Retrived Successfully`, data:carmakes};
   }
+
+
 
   async getModels(request) {
-    return ;
+
+      const {Year,Makes} = request
+
+    const carmodels = await prisma.car.findMany({
+      where:{year:Year,make:Makes},select:{
+        model:true,
+
+        
+      }
+    })
+    return {status:true,message:`Car Models for ${Year} and ${Makes} Retrived Successfully`, data:carmodels};
   }
 
-  async getSubmodels(request) {
-    return ;
+
+
+async getSubmodels(request){
+    const {Year,Makes,Models} = request
+
+    const carsubmodels = await prisma.car.findMany({
+      where:{year:Year,make:Makes,model:Models},select:{
+     submodel:true
+      }
+    })
+   return {status:true,message:`Car SubModels for ${Year} , ${Makes} and ${Models} Retrived Successfully`, data:carsubmodels} ;
   }
+
+
 
   async getNotes(request) {
-    return ;
+        const {Year,Makes,Models,SubModels} = request
+
+    const carnotes = await prisma.car.findMany({
+      where:{year:Year,make:Makes,model:Models,submodel:SubModels},select:{
+        notes:true
+      }
+    })
+  return {status:true,message:`Car Notes for ${Year} , ${Makes} , ${Models}, ${SubModels} Retrived Successfully`, data:carnotes}
   }
+
+
    async getPartNumber(request) {
-    return;
+         const {Year,Makes,Models,Notes,SubModels} = request
+
+    const carpartnumberandsize = await prisma.car.findMany({
+      where:{year:Year,make:Makes,model:Models,submodel:SubModels},select:{
+       pL:true,
+       sizecode:true
+      }
+    })
+    return {status:true,message:`Car Notes for ${Year} , ${Makes} , ${Models}, ${SubModels} and ${Notes} Retrived Successfully`, data:carpartnumberandsize}
   }
 }

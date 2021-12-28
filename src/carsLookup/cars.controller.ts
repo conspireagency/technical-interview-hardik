@@ -14,6 +14,7 @@ export class CarsController {
 
   @Post('/makes')
   findMakes(@Body() request: CreateCarMakesDto) {
+    console.log(request)
     return this.carsService.getMakes(request);
   }
 

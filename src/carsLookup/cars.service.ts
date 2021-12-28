@@ -85,18 +85,18 @@ async getSubmodels(request){
 
 
    async getPartNumber(request) {
-         const {Year,Make,Model,Notes,SubModels} = request
+         const {Year,Make,Model,Notes,SubModel} = request
 
     const carpartnumberandsize = await prisma.car.findMany({
-      where:{year:Year,make:Make,model:Model,submodel:SubModels},select:{
+      where:{year:Year,make:Make,model:Model,submodel:SubModel},select:{
        pL:true,
        sizecode:true
       }
     })
   if(!carpartnumberandsize){
-    return {status:true,message:`Car Part Number + Size Code for${Year} , ${Make} , ${Model}, ${SubModels} and ${Notes} Not Available`, data:{}}
+    return {status:true,message:`Car Part Number + Size Code for${Year} , ${Make} , ${Model}, ${SubModel} and ${Notes} Not Available`, data:{}}
   }
 
-    return {status:true,message:`Car Part Number + Size Code for ${Year} , ${Make} , ${Model}, ${SubModels} and ${Notes} Retrived Successfully`, data:carpartnumberandsize}
+    return {status:true,message:`Car Part Number + Size Code for year ${Year} , make = ${Make} , model = ${Model}, submodel = ${SubModel} and notes = ${Notes} Retrived Successfully`, data:carpartnumberandsize}
   }
 }

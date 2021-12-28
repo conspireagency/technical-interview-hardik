@@ -1,7 +1,7 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Query, Delete } from '@nestjs/common';
 import { CarsService } from './cars.service';
-import { CreateCarDto } from './dto/create-car.dto';
-import { UpdateCarDto } from './dto/update-car.dto';
+import {CreateCarMakesDto,CreateCarModelsDto,CreateCarNotesDto,CreateCarPartNumberAndSizeDto,CreateCarSubModelsDto} from "./entities/car.entity"
+
 
 @Controller('cars')
 export class CarsController {
@@ -12,28 +12,29 @@ export class CarsController {
     return this.carsService.getCarYears();
   }
 
-  @Get('/makes/:year')
-  findMakes(@Param('year') year: string) {
-    return this.carsService.getMakes(year);
+  @Post('/makes')
+  findMakes(@Body() request: CreateCarMakesDto) {
+    return this.carsService.getMakes(request);
   }
 
-  @Get('models/:year/:makes')
-  findModel(@Param('year') year: string, @Param('makes') makes:string) {
-    return this.carsService.getModels(year,makes);
+  @Post('/models')
+  findModel(@Body() request: CreateCarModelsDto) {
+    
+    return this.carsService.getModels(request);
   }
 
-  @Get('/submodels/:year/:makes/:model')
-  findSubmodel(@Param('year') year: string, @Param('makes') makes:string,@Param('model') model:string) {
-    return this.carsService.getSubmodels(year,makes,model);
+  @Post('/submodels')
+  findSubmodel(@Body() request: CreateCarSubModelsDto) {
+    return this.carsService.getSubmodels(request);
   }
 
-  @Get('/notes/:year/:makes/:model/:submodel')
-  findNotes(@Param('year') year: string, @Param('makes') makes:string,@Param('model') model:string,@Param('submodel') submodel:string) {
-    return this.carsService.getNotes(year,makes,model,submodel);
+  @Post('/notes')
+  findNotes(@Body() request: CreateCarNotesDto) {
+    return this.carsService.getNotes(request);
   }
 
-    @Get('/partnum/sizecode/:year/:makes/:model/:submodel/:notes')
-  findPartnum(@Param('year') year: string, @Param('makes') makes:string,@Param('model') model:string,@Param('submodel') submodel:string,@Param('notes') notes:string) {
-    return this.carsService.getPartNumber(year,makes,model,submodel,notes);
+    @Post('/partnum')
+  findPartnum(@Body() request: CreateCarPartNumberAndSizeDto) {
+    return this.carsService.getPartNumber(request);
   }
 }

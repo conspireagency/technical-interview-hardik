@@ -8,7 +8,6 @@ export class AddcarController {
   constructor(private readonly addcarService: AddcarService) {}
   @Post()
   create(@Body() request: CreateAddcarDto) {
-  
     return this.addcarService.createCar(request);
   }
 

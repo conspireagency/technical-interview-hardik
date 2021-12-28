@@ -1,32 +1,41 @@
 import { Injectable } from '@nestjs/common';
 import{getCarYearsResponseBody,getMakesResponseBody,getModelsResponseBody,getNotesResponseBody,getPartNumberResponseBody} from "./entities/car.entity"
+import prisma from "../../prisma"
+
 
 @Injectable()
 export class CarsService {
 
-
   async getCarYears() :Promise<getCarYearsResponseBody>{
-
-    
-    return {status:true,message:"Car Years Retrived Successfully", data:{}};
+    const caryears = await prisma.car.findMany({
+      select:{
+        year:true
+      }
+    })
+    return {status:true,message:"Car Years Retrived Successfully", data:caryears};
   }
 
-  async getMakes(year:string) {
-    return `This action returns all cars`;
+  async getMakes(request) {
+    const {year} = request
+
+    const carmakes = await prisma.car.findMany({
+      where:{year:year}
+    })
+    return {status:true,message:`Car Makes for ${year} Retrived Successfully`, data:carmakes};
   }
 
-  async getModels(year:string,makes:string) {
+  async getModels(request) {
     return ;
   }
 
-  async getSubmodels(year:string,makes:string,model:string) {
+  async getSubmodels(request) {
     return ;
   }
 
-  async getNotes(year:string,makes:string,model:string,submodel:string) {
+  async getNotes(request) {
     return ;
   }
-   async getPartNumber(year:string,makes:string,model:string,submodel:string,notes:string) {
+   async getPartNumber(request) {
     return;
   }
 }
